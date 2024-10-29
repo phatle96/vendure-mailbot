@@ -1,0 +1,12 @@
+services:
+  telegram-bot:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "3003:3003"  # Map port 3003 on the host to port 3003 in the container
+    environment:
+      - TELEGRAM_BOT_TOKEN=${TELEGRAM_BOT_TOKEN}  # Use .env variable
+    volumes:
+      - .:/usr/src/app  # Mount the current directory to the container for live updates
+    restart: unless-stopped  # Restart the container unless it was stopped manually
